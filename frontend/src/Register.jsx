@@ -35,55 +35,54 @@ const Register = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        backgroundColor: "#000",
-        padding: 2
+        backgroundColor: "#f5f5f5",
+        padding: 3
       }}
     >
       <Container
         maxWidth="xs"
         sx={{
-          backgroundColor: "#111",
+          backgroundColor: "#ffffff",
           padding: 4,
-          borderRadius: 3,
-          boxShadow: 5,
-          color: "#fff"
+          borderRadius: 2,
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+          color: "#333"
         }}
       >
         <Typography
           variant="h4"
           sx={{
-            fontWeight: "bold",
+            fontWeight: "500",
             textAlign: "center",
-            color: "#FFA500",
-            marginBottom: 3
+            color: "#333",
+            marginBottom: 2
           }}
         >
           Register
         </Typography>
         <TextField
           label="Username"
-          variant="filled"
+          variant="outlined"
           fullWidth
           margin="normal"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          sx={{ backgroundColor: "#333", borderRadius: 1, input: { color: "#fff" }, label: { color: "#fff" } }}
         />
         <TextField
           label="Password"
           type="password"
-          variant="filled"
+          variant="outlined"
           fullWidth
           margin="normal"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          sx={{ backgroundColor: "#333", borderRadius: 1, input: { color: "#fff" }, label: { color: "#fff" } }}
         />
         <Button
           variant="contained"
+          color="primary"
           fullWidth
           onClick={handleRegister}
-          sx={{ backgroundColor: "#FFA500", color: "#000", marginTop: 2 }}
+          sx={{ marginTop: 2 }}
         >
           Register
         </Button>
@@ -93,3 +92,4 @@ const Register = () => {
 };
 
 export default Register;
+  

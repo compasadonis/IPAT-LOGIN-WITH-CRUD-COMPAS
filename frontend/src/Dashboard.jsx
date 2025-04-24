@@ -58,64 +58,54 @@ const Dashboard = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        backgroundColor: "#000",
-        padding: { xs: 2, md: 5 }
+        backgroundColor: "#f5f5f5",
+        padding: 3
       }}
     >
       <Container
-        maxWidth="md"
+        maxWidth="sm"
         sx={{
-          backgroundColor: "#111",
-          color: "#fff",
+          backgroundColor: "#ffffff",
+          color: "#333",
           padding: 4,
-          borderRadius: 3,
-          boxShadow: 5,
-          width: "100%",
-          maxWidth: "900px"
+          borderRadius: 2,
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)"
         }}
       >
         <Typography
-          variant="h3"
-          sx={{ fontWeight: "bold", color: "#FFA500", textAlign: "center", marginBottom: 3 }}
+          variant="h4"
+          sx={{ fontWeight: "500", color: "#333", textAlign: "center", marginBottom: 2 }}
         >
           Welcome, {user}
         </Typography>
 
-        <Box sx={{ marginY: 3 }}>
+        <Box sx={{ marginBottom: 2 }}>
           <TextField
-            label="User Name"
-            variant="filled"
+            label="Add a user"
+            variant="outlined"
             fullWidth
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
-            sx={{ backgroundColor: "#333", borderRadius: 1, input: { color: "#fff" } }}
+            sx={{ marginBottom: 1 }}
           />
-          <Button
-            variant="contained"
-            sx={{ backgroundColor: "#FFA500", color: "#000", marginTop: 2 }}
-            fullWidth
-            onClick={addUser}
-          >
+          <Button variant="contained" color="primary" fullWidth onClick={addUser}>
             Add User
           </Button>
         </Box>
 
         {editId && (
-          <Box sx={{ marginBottom: 3 }}>
-            <Typography variant="h5" sx={{ color: "#FFA500", textAlign: "center", marginBottom: 1 }}>
-              Edit User
-            </Typography>
+          <Box sx={{ marginBottom: 2 }}>
             <TextField
-              label="User Name"
-              variant="filled"
+              label="Edit user name"
+              variant="outlined"
               fullWidth
               value={editName}
               onChange={(e) => setEditName(e.target.value)}
-              sx={{ backgroundColor: "#333", borderRadius: 1, input: { color: "#fff" } }}
+              sx={{ marginBottom: 1 }}
             />
             <Button
               variant="contained"
-              sx={{ backgroundColor: "#FF4500", color: "#fff", marginTop: 2 }}
+              color="success"
               fullWidth
               onClick={saveEditedUser}
             >
@@ -126,24 +116,31 @@ const Dashboard = () => {
 
         <List>
           {users.map((user) => (
-            <ListItem key={user.id} divider sx={{ backgroundColor: "#222", borderRadius: 1, marginY: 1 }}>
-              <ListItemText primary={user.name} sx={{ color: "#fff" }} />
-              <IconButton onClick={() => editUser(user.id, user.name)} sx={{ color: "#FFA500" }}>
-                <Edit />
-              </IconButton>
-              <IconButton onClick={() => deleteUser(user.id)} sx={{ color: "#FF4500" }}>
-                <Delete />
-              </IconButton>
+            <ListItem
+              key={user.id}
+              divider
+              sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+            >
+              <ListItemText primary={user.name} />
+              <Box>
+                <IconButton onClick={() => editUser(user.id, user.name)} color="primary">
+                  <Edit />
+                </IconButton>
+                <IconButton onClick={() => deleteUser(user.id)} color="secondary">
+                  <Delete />
+                </IconButton>
+              </Box>
             </ListItem>
           ))}
         </List>
 
         <Button
-          variant="contained"
-          sx={{ backgroundColor: "#FF4500", color: "#fff", marginTop: 3 }}
+          variant="outlined"
+          color="error"
           fullWidth
+          sx={{ marginTop: 3 }}
           onClick={() => {
-            localStorage.removeItem("Username");
+            localStorage.removeItem("username");
             localStorage.removeItem("token");
             navigate("/login");
           }}
