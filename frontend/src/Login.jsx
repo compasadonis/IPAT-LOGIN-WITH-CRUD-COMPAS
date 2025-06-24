@@ -37,26 +37,26 @@ const Login = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        backgroundColor: "#f5f5f5",
+        backgroundColor: "#121212",
         padding: 3
       }}
     >
       <Container
         maxWidth="xs"
         sx={{
-          backgroundColor: "#ffffff",
+          backgroundColor: "#282828",
           padding: 4,
           borderRadius: 2,
-          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-          color: "#333"
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)",
+          color: "#FFFFFF"
         }}
       >
         <Typography
           variant="h4"
           sx={{
-            fontWeight: "500",
+            fontWeight: "bold",
             textAlign: "center",
-            color: "#333",
+            color: "#1DB954",
             marginBottom: 2
           }}
         >
@@ -64,27 +64,53 @@ const Login = () => {
         </Typography>
         <TextField
           label="Username"
-          variant="outlined"
+          variant="filled"
           fullWidth
           margin="normal"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          InputProps={{
+            style: {
+              backgroundColor: "#FFFFFF",
+              borderRadius: 4,
+              color: "#121212"
+            }
+          }}
+          InputLabelProps={{ style: { color: "#999" } }}
         />
         <TextField
           label="Password"
           type="password"
-          variant="outlined"
+          variant="filled"
           fullWidth
           margin="normal"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          InputProps={{
+            style: {
+              backgroundColor: "#FFFFFF",
+              borderRadius: 4,
+              color: "#121212"
+            }
+          }}
+          InputLabelProps={{ style: { color: "#999" } }}
         />
         <Button
           variant="contained"
-          color="primary"
           fullWidth
           onClick={handleLogin}
-          sx={{ marginTop: 2 }}
+          sx={{
+            marginTop: 2,
+            backgroundColor: "#1DB954",
+            color: "#FFFFFF",
+            fontWeight: "bold",
+            padding: "10px 0",
+            borderRadius: 4,
+            fontSize: "16px",
+            ":hover": {
+              backgroundColor: "#1AA34A"
+            }
+          }}
         >
           Login
         </Button>

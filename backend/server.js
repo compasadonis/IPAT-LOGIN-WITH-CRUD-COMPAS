@@ -14,7 +14,7 @@ const db = mysql2.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "student_db",  
+  database: "compaslogin",  
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,

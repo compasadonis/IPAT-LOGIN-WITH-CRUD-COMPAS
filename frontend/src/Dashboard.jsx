@@ -58,23 +58,23 @@ const Dashboard = () => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        backgroundColor: "#f5f5f5",
+        backgroundColor: "#121212",
         padding: 3
       }}
     >
       <Container
         maxWidth="sm"
         sx={{
-          backgroundColor: "#ffffff",
-          color: "#333",
+          backgroundColor: "#282828",
+          color: "#FFFFFF",
           padding: 4,
           borderRadius: 2,
-          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)"
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.3)"
         }}
       >
         <Typography
           variant="h4"
-          sx={{ fontWeight: "500", color: "#333", textAlign: "center", marginBottom: 2 }}
+          sx={{ fontWeight: "bold", color: "#1DB954", textAlign: "center", marginBottom: 2 }}
         >
           Welcome, {user}
         </Typography>
@@ -82,13 +82,33 @@ const Dashboard = () => {
         <Box sx={{ marginBottom: 2 }}>
           <TextField
             label="Add a user"
-            variant="outlined"
+            variant="filled"
             fullWidth
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
+            InputProps={{
+              style: {
+                backgroundColor: "#FFFFFF",
+                borderRadius: 4,
+                color: "#121212"
+              }
+            }}
+            InputLabelProps={{ style: { color: "#999" } }}
             sx={{ marginBottom: 1 }}
           />
-          <Button variant="contained" color="primary" fullWidth onClick={addUser}>
+          <Button
+            variant="contained"
+            fullWidth
+            onClick={addUser}
+            sx={{
+              backgroundColor: "#1DB954",
+              color: "#FFFFFF",
+              fontWeight: "bold",
+              ":hover": {
+                backgroundColor: "#1AA34A"
+              }
+            }}
+          >
             Add User
           </Button>
         </Box>
@@ -97,17 +117,32 @@ const Dashboard = () => {
           <Box sx={{ marginBottom: 2 }}>
             <TextField
               label="Edit user name"
-              variant="outlined"
+              variant="filled"
               fullWidth
               value={editName}
               onChange={(e) => setEditName(e.target.value)}
+              InputProps={{
+                style: {
+                  backgroundColor: "#FFFFFF",
+                  borderRadius: 4,
+                  color: "#121212"
+                }
+              }}
+              InputLabelProps={{ style: { color: "#999" } }}
               sx={{ marginBottom: 1 }}
             />
             <Button
               variant="contained"
-              color="success"
               fullWidth
               onClick={saveEditedUser}
+              sx={{
+                backgroundColor: "#1DB954",
+                color: "#FFFFFF",
+                fontWeight: "bold",
+                ":hover": {
+                  backgroundColor: "#1AA34A"
+                }
+              }}
             >
               Save Changes
             </Button>
@@ -119,14 +154,25 @@ const Dashboard = () => {
             <ListItem
               key={user.id}
               divider
-              sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                backgroundColor: "#333",
+                borderRadius: 2,
+                padding: "8px 16px",
+                marginBottom: 1
+              }}
             >
-              <ListItemText primary={user.name} />
+              <ListItemText
+                primary={user.name}
+                primaryTypographyProps={{ style: { color: "#FFFFFF" } }}
+              />
               <Box>
-                <IconButton onClick={() => editUser(user.id, user.name)} color="primary">
+                <IconButton onClick={() => editUser(user.id, user.name)} sx={{ color: "#1DB954" }}>
                   <Edit />
                 </IconButton>
-                <IconButton onClick={() => deleteUser(user.id)} color="secondary">
+                <IconButton onClick={() => deleteUser(user.id)} sx={{ color: "#E53935" }}>
                   <Delete />
                 </IconButton>
               </Box>
@@ -136,9 +182,17 @@ const Dashboard = () => {
 
         <Button
           variant="outlined"
-          color="error"
           fullWidth
-          sx={{ marginTop: 3 }}
+          sx={{
+            marginTop: 3,
+            borderColor: "#E53935",
+            color: "#E53935",
+            fontWeight: "bold",
+            ":hover": {
+              backgroundColor: "#E53935",
+              color: "#FFFFFF"
+            }
+          }}
           onClick={() => {
             localStorage.removeItem("username");
             localStorage.removeItem("token");
