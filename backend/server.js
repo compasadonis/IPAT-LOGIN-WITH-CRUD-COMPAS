@@ -14,7 +14,7 @@ const db = mysql2.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "compaslogin",  
+  database: "compasdb",  
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -38,7 +38,7 @@ app.post("/register", async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const checkUserSql = "SELECT * FROM people WHERE username = ?"; 
+  const checkUserSql = "SELECT * FROM compaslogin WHERE username = ?"; 
 
   db.query(checkUserSql, [username], (err, results) => {
     if (err) return res.status(500).json({ message: "Database Error" });
@@ -46,7 +46,7 @@ app.post("/register", async (req, res) => {
       return res.status(400).json({ message: "Username already exists" });
     }
 
-    const insertUserSql = "INSERT INTO people (username, password) VALUES (?, ?)";
+    const insertUserSql = "INSERT INTO compaslogin (username, password) VALUES (?, ?)";
     db.query(insertUserSql, [username, hashedPassword], (err, result) => {
       if (err) return res.status(500).json({ message: "Registration Failed" });
 
@@ -63,7 +63,7 @@ app.post("/login", (req, res) => {
     return res.status(400).json({ message: "All fields are required" });
   }
 
-  const sql = "SELECT * FROM people WHERE username = ?";
+  const sql = "SELECT * FROM compaslogin WHERE username = ?";
   db.query(sql, [username], async (err, results) => {
     if (err || results.length === 0) {
       return res.status(400).json({ message: "Invalid username or password" });
